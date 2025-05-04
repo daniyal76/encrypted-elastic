@@ -1,5 +1,6 @@
 package com.vaghar.elasticencryption.document.model;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.annotation.Id;
@@ -10,6 +11,7 @@ import java.util.List;
 @Getter
 @Setter
 @Document(indexName="secure-document")
+@EqualsAndHashCode
 public class DocumentEntity {
 
     @Id

@@ -6,6 +6,7 @@ import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.GCMParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
+import java.security.MessageDigest;
 import java.util.Base64;
 
 @Service
@@ -16,6 +17,12 @@ public class EncryptionServiceImpl {
     private static final int IV_SIZE = 12;
     private static final int TAG_SIZE = 128;
     private static final String SECRET_KEY = "1234567890123456"; // 16 bytes for AES-128 (Use a real secret manager in production)
+
+    public static String hashForSearch(String keyword) throws Exception {
+        MessageDigest digest = MessageDigest.getInstance("SHA-256");
+        byte[] hashed = digest.digest(keyword.getBytes("UTF-8"));
+        return Base64.getEncoder().encodeToString(hashed);
+    }
 
     public String encrypt(String plaintext) throws Exception {
         byte[] iv = new byte[IV_SIZE];

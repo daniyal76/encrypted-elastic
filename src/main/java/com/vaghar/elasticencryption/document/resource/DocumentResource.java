@@ -1,6 +1,7 @@
 package com.vaghar.elasticencryption.document.resource;
 
 import com.vaghar.elasticencryption.document.model.DocumentEntity;
+import com.vaghar.elasticencryption.document.service.DocumentResult;
 import com.vaghar.elasticencryption.document.service.DocumentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -20,7 +21,7 @@ public class DocumentResource {
     }
 
     @GetMapping("/search")
-    public List<DocumentEntity> search(@RequestParam String keyword) throws Exception {
+    public List<DocumentResult> search(@RequestParam String keyword) throws Exception {
         return service.searchDocuments(keyword);
     }
 
